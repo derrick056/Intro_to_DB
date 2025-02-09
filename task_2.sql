@@ -1,3 +1,20 @@
+CREATE DATABASE IF NOT EXISTS alx_book_store;
+USE alx_book_store;
+
+CREATE TABLE IF NOT EXISTS Authors (
+    author_id INT AUTO_INCREMENT PRIMARY KEY,
+    author_name VARCHAR(215) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS books (
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(130) NOT NULL,
+    author_id INT,
+    price DOUBLE NOT NULL,
+    publication_date DATE,
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id) ON DELETE SET NULL
+);
+
 CREATE TABLE IF NOT EXISTS customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(215) NOT NULL,
@@ -20,4 +37,3 @@ CREATE TABLE IF NOT EXISTS order_details (
     FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE
 );
- 
